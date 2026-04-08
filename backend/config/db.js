@@ -33,7 +33,21 @@ db.serialize(() => {
     UNIQUE(user_id, property_id)
   )`);
 
-  // Seed 3 sample properties (Kathmandu area)
+  db.get("SELECT COUNT(*) as count FROM users", (err, row) => {
+    if (row.count === 0) {
+      const bcrypt = require('bcryptjs');
+      const hashedPassword = bcrypt.hashSync('demo123', 10);
+
+      db.run(
+        'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
+        ['Demo Buyer', 'demo@buyer.com', hashedPassword, 'buyer'],
+        (err) => {
+          if (!err) console.log('✅ Default user created → demo@buyer.com / demo123');
+        }
+      );
+    }
+  });
+
   db.get("SELECT COUNT(*) as count FROM properties", (err, row) => {
     if (row.count === 0) {
       const stmt = db.prepare("INSERT INTO properties (title, description, price, location) VALUES (?, ?, ?, ?)");

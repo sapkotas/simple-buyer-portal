@@ -1,31 +1,23 @@
-const PLACEHOLDER_COLORS = [
-  'from-indigo-400 to-cyan-400',
-  'from-violet-400 to-pink-400',
-  'from-emerald-400 to-teal-400',
-  'from-orange-400 to-amber-300',
-  'from-rose-400 to-pink-500',
-  'from-sky-400 to-blue-500',
-];
-
+import image from '../components/assests/image.jpg'
 export default function PropertyCard({ property, isFav, onToggle, index = 0 }) {
-  const colorClass = PLACEHOLDER_COLORS[index % PLACEHOLDER_COLORS.length];
 
   return (
     <div
       className="bg-white rounded-2xl overflow-hidden shadow-sm shadow-slate-200 hover:shadow-lg hover:shadow-slate-200 hover:-translate-y-1 transition-all duration-300 flex flex-col"
       style={{ animation: `fadeInUp 0.5s ease-out ${index * 0.07}s both` }}
     >
-      {/* Image / Gradient placeholder */}
-      <div className={`relative h-44 bg-gradient-to-br ${colorClass} flex items-end p-4`}>
+      {/* Image */}
+      <div className="relative h-44 bg-slate-200 flex items-end p-4">
+      <img src={image} alt="" srcset="" className="absolute inset-0 w-full h-full object-cover" />
         {/* Price badge */}
-        <span className="bg-white/90 backdrop-blur-sm text-slate-800 font-bold text-sm px-3 py-1.5 rounded-xl shadow-sm">
+        <span className="relative z-10 bg-white/90 backdrop-blur-sm text-slate-800 font-bold text-sm px-3 py-1.5 rounded-xl shadow-sm">
           NPR {property.price?.toLocaleString()}
         </span>
 
         {/* Favourite button */}
         <button
           onClick={onToggle}
-          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md hover:scale-110 active:scale-95 transition-transform duration-200 cursor-pointer"
+          className="absolute z-10 top-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md hover:scale-110 active:scale-95 transition-transform duration-200 cursor-pointer"
           aria-label={isFav ? 'Remove from favourites' : 'Add to favourites'}
         >
           {isFav ? (
@@ -40,7 +32,7 @@ export default function PropertyCard({ property, isFav, onToggle, index = 0 }) {
         </button>
 
         {/* For Sale badge */}
-        <span className="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg">
+        <span className="absolute z-10 top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg">
           For Sale
         </span>
       </div>
