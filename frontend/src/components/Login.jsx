@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'https://simple-buyer-portal.vercel.app /api';
+const API_URL = 'https://simple-buyer-portal.vercel.app/api'; //port
 
 export default function Login({ setToken }) {
   const [isLogin, setIsLogin] = useState(true);
