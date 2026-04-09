@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import PropertyCard from './PropertyCard';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://simple-buyer-domain.vercel.app/api';
 
 export default function Dashboard({ token, setToken }) {
   const [user, setUser] = useState(null);
